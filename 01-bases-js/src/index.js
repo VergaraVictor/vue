@@ -1,6 +1,6 @@
 
 
+const arreglo = [1,2,3,4]
 
 
-
-console.log('Hola')
+console.log(arreglo[0])
