@@ -1,6 +1,5 @@
 
+ console.log( getHeroById(2))
 
 
-
-
-console.log('Hola Mundo')
+ console.log( getHeroesByOwner('Marvel'))
