@@ -12,6 +12,9 @@ const giphyApi = axios.create({
     }
 })
 
+export default giphyApi
+
+
 // con esto funciona en el index fernando pidio que la comentara  por el siguiente video
 // giphyApi.get('/random')
 //     .then( resp => {
