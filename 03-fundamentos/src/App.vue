@@ -10,7 +10,7 @@ import Counter from './components/Counter.vue';
 
 
 export default {
-  // name: 'Patito',
+  name: 'App',
   components: { Counter },
 }
 </script>
