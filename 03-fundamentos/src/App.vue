@@ -1,16 +1,17 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Hola Mundo"/>
+ 
+  <Counter />
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Counter from './components/Counter.vue';
+
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  // name: 'Patito',
+  components: { Counter },
 }
 </script>
 
