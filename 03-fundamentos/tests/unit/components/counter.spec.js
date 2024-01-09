@@ -38,6 +38,27 @@ describe('Counter Component', () => {
         // expect( pTags[1].text() ).toBe('100')
         expect( value ).toBe('100')
         
+    })
 
+    test('debe de incrementar y decrementar el contador', async() => {
+
+        const wrapper = shallowMount( Counter )
+
+        const increaseBtn = wrapper.find('button')
+
+        await increaseBtn.trigger('click')
+        await increaseBtn.trigger('click')
+        await increaseBtn.trigger('click')
+
+       
+        //TODO: Tarea
+        const decreaseBtn = wrapper.findAll('button')[1] 
+
+        await decreaseBtn.trigger('click')
+        await decreaseBtn.trigger('click')
+
+        const value = wrapper.find('[data-testid="counter"]').text()
+
+        expect(value).toBe( '101' )
     })
 })
