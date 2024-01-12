@@ -5,6 +5,12 @@ import Counter from '@/components/Counter'
 
 describe('Counter Component', () => {
 
+    let wrapper
+
+    beforeEach(() => {
+        wrapper =shallowMount( Counter )
+    })
+
     // test('debe de hacer match con el snapshot', () => {
         
     //     const wrapper = shallowMount( Counter )
@@ -15,8 +21,6 @@ describe('Counter Component', () => {
 
     test('h2 debe tener el valor por defecto"Counter"', () => {
 
-        const wrapper = shallowMount( Counter )
-
         expect(wrapper.find('h2').exists() ).toBeTruthy()
         
         const h2Value = wrapper.find('h2').text()
@@ -25,10 +29,10 @@ describe('Counter Component', () => {
 
     })
 
-    test('el valor por defecto debe ser 100 en el p', () => {
+    test('el valor por defecto debe ser 100 en el p', async() => {
         
         // wrapper
-        const wrapper = shallowMount( Counter )
+        // const wrapper = shallowMount( Counter )
 
         //pTags
         // const pTags = wrapper.findAll('p')
@@ -37,23 +41,16 @@ describe('Counter Component', () => {
         //Expect segundo p === 100
         // expect( pTags[1].text() ).toBe('100')
         expect( value ).toBe('100')
-        
+
     })
 
     test('debe de incrementar y decrementar el contador', async() => {
 
-        const wrapper = shallowMount( Counter )
-
-        const increaseBtn = wrapper.find('button')
+        const [ increaseBtn, decreaseBtn ] = wrapper.findAll('button')
 
         await increaseBtn.trigger('click')
         await increaseBtn.trigger('click')
         await increaseBtn.trigger('click')
-
-       
-        //TODO: Tarea
-        const decreaseBtn = wrapper.findAll('button')[1] 
-
         await decreaseBtn.trigger('click')
         await decreaseBtn.trigger('click')
 
