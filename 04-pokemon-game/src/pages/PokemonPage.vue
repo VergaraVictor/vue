@@ -65,8 +65,8 @@ export default {
            
             this.showPokemon = false
             this.showAnswer  = false
-            this. pokemonArr = []
-            this. pokemon    = null
+            this.pokemonArr  = []
+            this.pokemon     = null
             this.mixPokemonArray()
         }
     },
