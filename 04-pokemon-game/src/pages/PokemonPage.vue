@@ -60,6 +60,8 @@ export default {
             } else {
                 this.mesage = `Oops, era ${ this.pokemon.name }`
             }
+
+            console.log('Hola mundo', this.showPokemon);
         },
         newGame() {
            
