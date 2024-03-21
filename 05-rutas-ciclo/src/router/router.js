@@ -1,5 +1,5 @@
 
-import DragonBallLayout from '@/modules/dbz/layouts/DragonBallLayout.vue';
+import DragonBallLayout from '@/modules/dbz/layouts/DragonBallLayout';
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 
