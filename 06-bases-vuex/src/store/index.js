@@ -1,10 +1,13 @@
-import { createStore } from "vuex"
+import { createStore } from 'vuex'
+import getRandomInt from '@/helpers/getRandomInt'
 
 export default createStore({
 
     state: {
         count: 1,
-        lastMutation: 'none'
+        lastMutation: 'none',
+        isLoading: false,
+        lastRandomInt: 0
     },
     // Son metodos que estas sirven para realizar cambios en el state
     mutations: {
@@ -14,7 +17,18 @@ export default createStore({
         },
         incrementBy( state, val ) {
             state.count += val
-            state.lastMutation = 'incrementBy'
+            state.lastMutation = 'incrementBy ' + val
+            state.lastRandomInt = val
+        },
+    },
+    // LAs acciones son metodos que pueden ser asincronas; que normalmente se usan para la compararión referente aun backend
+    actions: {
+        async incrementRandomInt( context ) {
+
+            const randomInt = await getRandomInt()
+
+            context.commit('incrementBy', randomInt)
+
         }
     }
     
