@@ -5,7 +5,7 @@
 
     <button @click="increment">+1</button>
     <button @click="incrementBy">+5</button>
-    <button @click="incrementRandomInt">Random</button>
+    <button @click="randomInt">Random</button>
 
     <h1>mapState</h1>
     <h2>mapState: {{ count }}</h2>
@@ -14,7 +14,7 @@
 
 <script>
 
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
 
@@ -36,10 +36,15 @@ export default {
         },
         incrementBy() {
             this.$store.commit('incrementBy', 5 )
+            // this.randomInt()
         },
-        incrementRandomInt() {
-            this.$store.dispatch( 'incrementRandomInt' )
-        }
+        // incrementRandomInt() {
+        //     this.$store.dispatch( 'incrementRandomInt' )
+        // } este lo quitamos para realizar el llamado de otra forma con el acction
+        // ...mapActions(['incrementRandomInt']) esto en caso de que generara un confliccto con el nombre
+        ...mapActions({
+            randomInt: 'incrementRandomInt'
+        })
     }
 
 }
