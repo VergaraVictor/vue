@@ -23,7 +23,7 @@ export default {
         countComputed() {
             return this.$store.state.count
         },
-        ...mapState(['count','lastMutation']) // 1ra forma para llamar el state
+        ...mapState(['count','lastMutation', 'isLoading']) // 1ra forma para llamar el state
         // ...mapState({
         //     count: state => state.count,
         //     lastMutation: state => state.lastMutation
