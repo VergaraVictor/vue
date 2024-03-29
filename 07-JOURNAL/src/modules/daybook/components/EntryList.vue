@@ -23,7 +23,7 @@ import { defineAsyncComponent } from 'vue';
 
 export default {
     components: {
-        Entry: defineAsyncComponent(() => import('./Entry.vue'))                 
+        Entry: defineAsyncComponent(() => import('./Entry.vue')),                 
     }
 }
 </script>
