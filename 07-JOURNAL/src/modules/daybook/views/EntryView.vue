@@ -27,8 +27,10 @@
             placeholder="¿Qué sucedio hoy?"
         ></textarea>
     </div>
-
-    <Fab />
+        
+    <Fab
+        icon="fa-save"
+    />
 
     <img src="https://i.pinimg.com/236x/52/8f/82/528f82381f6d3524d80581ba2945448f.jpg" 
     alt="entry-picture"
