@@ -40,10 +40,34 @@
 
 <script>
 import { defineAsyncComponent } from 'vue';
+import { mapGetters } from 'vuex';  // se asocian con las propiedades computadas
 
 export default {
+    props: {
+        id: {
+            type: String,
+            required: true
+        }
+    },
     components: {
         Fab: defineAsyncComponent(() => import('../components/Fab.vue'))
+    },
+
+    computed: {
+        ...mapGetters('journal', ['getEntryById'])   
+    },
+
+    methods: {
+        loadEntry() {
+            const entry = this.getEntryById( this.id )
+            console.log( entry );
+        }
+    },
+
+    created() {
+        // console.log(this.$route.params.id); con el props id se puede pasar de la siguente manera:
+        // console.log(this.id);
+        this.loadEntry()
     }
 }
 </script>
