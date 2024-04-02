@@ -3,9 +3,9 @@
     <div class="entry-title d-flex justify-content-between p-2">
         
         <div>
-            <span class="text-success fs-3 fw-bold">15</span>
-            <span class="mx-1 fs-3">Julio</span>
-            <span class="mx-2 fs-4 fw-light">2021, jueves</span>
+            <span class="text-success fs-3 fw-bold">{{ day }}</span>
+            <span class="mx-1 fs-3">{{ mounth }}</span>
+            <span class="mx-2 fs-4 fw-light">{{ yearDay }}</span>
         </div>
         
         <div>
@@ -24,6 +24,7 @@
     <hr>
     <div class="d-flex flex-column px-3 h-75">
         <textarea
+            v-model="entry.text"
             placeholder="¿Qué sucedio hoy?"
         ></textarea>
     </div>
@@ -41,6 +42,7 @@
 <script>
 import { defineAsyncComponent } from 'vue';
 import { mapGetters } from 'vuex';  // se asocian con las propiedades computadas
+import getDayMonthYear from '../helpers/getDayMonthYear'
 
 export default {
     props: {
@@ -53,14 +55,34 @@ export default {
         Fab: defineAsyncComponent(() => import('../components/Fab.vue'))
     },
 
+    data() {
+        return {
+            entry: null
+        }
+    },
+
     computed: {
-        ...mapGetters('journal', ['getEntryById'])   
+        ...mapGetters('journal', ['getEntryById']),
+        day() {
+            const { day } = getDayMonthYear( this.entry.date )
+            return day
+        },
+        month() {
+            const { month } = getDayMonthYear( this.entry.date )
+            return month
+        },
+        yearDay() {
+            const { yearDay } = getDayMonthYear( this.entry.date )
+            return yearDay
+        }   
     },
 
     methods: {
         loadEntry() {
             const entry = this.getEntryById( this.id )
-            console.log( entry );
+            if ( !entry ) this.$router.push({ name: 'no-entry' })
+
+            this.entry = entry
         }
     },
 
