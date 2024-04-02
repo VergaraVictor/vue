@@ -1,41 +1,42 @@
-
 <template>
-    <div class="entry-title d-flex justify-content-between p-2">
-        
-        <div>
-            <span class="text-success fs-3 fw-bold">{{ day }}</span>
-            <span class="mx-1 fs-3">{{ mounth }}</span>
-            <span class="mx-2 fs-4 fw-light">{{ yearDay }}</span>
-        </div>
-        
-        <div>
-            <button class="btn btn-danger mx-2">
-                Borrar
-                <i class="fa fa-trash-alt"></i>
-            </button>
+    <template v-if="entry">
+        <div class="entry-title d-flex justify-content-between p-2">
+            <div>
+                <span class="text-success fs-3 fw-bold">{{ day }}</span>
+                <span class="mx-1 fs-3">{{ mounth }}</span>
+                <span class="mx-2 fs-4 fw-light">{{ yearDay }}</span>
+            </div>
+            
+            <div>
+                <button class="btn btn-danger mx-2">
+                    Borrar
+                    <i class="fa fa-trash-alt"></i>
+                </button>
 
-            <button class="btn btn-primary">
-                Subir foto
-                <i class="fa fa-upload"></i>
-            </button>
+                <button class="btn btn-primary">
+                    Subir foto
+                    <i class="fa fa-upload"></i>
+                </button>
+            </div>
         </div>
-    </div>
 
-    <hr>
-    <div class="d-flex flex-column px-3 h-75">
-        <textarea
-            v-model="entry.text"
-            placeholder="¿Qué sucedio hoy?"
-        ></textarea>
-    </div>
-        
+        <hr>
+        <div class="d-flex flex-column px-3 h-75">
+            <textarea
+                v-model="entry.text"
+                placeholder="¿Qué sucedio hoy?"
+            ></textarea>
+        </div>
+
+        <img src="https://i.pinimg.com/236x/52/8f/82/528f82381f6d3524d80581ba2945448f.jpg" 
+        alt="entry-picture"
+        class="img-thumbnail">
+    
+    </template>
+
     <Fab
         icon="fa-save"
     />
-
-    <img src="https://i.pinimg.com/236x/52/8f/82/528f82381f6d3524d80581ba2945448f.jpg" 
-    alt="entry-picture"
-    class="img-thumbnail">
 
 </template>
 
@@ -80,7 +81,7 @@ export default {
     methods: {
         loadEntry() {
             const entry = this.getEntryById( this.id )
-            if ( !entry ) this.$router.push({ name: 'no-entry' })
+            if ( !entry ) return this.$router.push({ name: 'no-entry' })
 
             this.entry = entry
         }
@@ -90,7 +91,16 @@ export default {
         // console.log(this.$route.params.id); con el props id se puede pasar de la siguente manera:
         // console.log(this.id);
         this.loadEntry()
-    }
+    },
+
+    watch: {
+        // id( value, oldvalue) { esto es para hacer una validafción del valor anterior vs al actual
+        //     console.log({ value, oldvalue });
+        // }
+        id() { 
+            this.loadEntry()
+        }
+    }   
 }
 </script>
 
