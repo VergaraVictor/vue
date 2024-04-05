@@ -36,13 +36,14 @@
 
     <Fab
         icon="fa-save"
+        @on:click="saveEntry"
     />
 
 </template>
 
 <script>
 import { defineAsyncComponent } from 'vue';
-import { mapGetters } from 'vuex';  // se asocian con las propiedades computadas
+import { mapGetters, mapActions } from 'vuex';  // se asocian con las propiedades computadas
 import getDayMonthYear from '../helpers/getDayMonthYear'
 
 export default {
@@ -61,7 +62,7 @@ export default {
             entry: null
         }
     },
-
+    
     computed: {
         ...mapGetters('journal', ['getEntryById']),
         day() {
@@ -79,11 +80,38 @@ export default {
     },
 
     methods: {
+        ...mapActions('journal', ['updateEntry']),
+
         loadEntry() {
-            const entry = this.getEntryById( this.id )
-            if ( !entry ) return this.$router.push({ name: 'no-entry' })
+
+            let entry;
+            
+            if( this.id === 'new') {
+                entry = {
+                    text: '',
+                    date: new Date().getTime()
+                }
+            } else {
+
+                entry = this.getEntryById( this.id )
+                if ( !entry ) return this.$router.push({ name: 'no-entry' })
+            
+            }
 
             this.entry = entry
+        },
+        async saveEntry() {
+            
+            if( this.entry.id ){
+                // Actualizar
+                // Action del Journal Store
+                await this.updateEntry( this.entry )
+            } else {
+                // Crear una nueva entrada
+                console.log('Post de una nueva entrada');
+            }
+
+            
         }
     },
 

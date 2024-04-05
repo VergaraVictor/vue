@@ -9,8 +9,16 @@ export const setEntries = ( state, entries ) => {
     state.isLoading = false
 }
 
-export const upateEntries = (/* state */ ) => {
+export const upateEntries = ( state, entry ) => { // entry actualizada
 
+    //state.entries => un arreglo ...
+
+    const idx = state.entries.map( e => e.id ).indexOf( entry.id ) // ['ABC','XYZ'] Esto es lo que hace
+    console.log({idx});
+
+    // state.entries = ... entry
+
+    state.entries[idx] = entry 
 }
 
 export const addEntries = (/* state */ ) => {
