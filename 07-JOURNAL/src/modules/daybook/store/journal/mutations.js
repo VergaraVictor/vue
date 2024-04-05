@@ -21,6 +21,7 @@ export const upateEntries = ( state, entry ) => { // entry actualizada
     state.entries[idx] = entry 
 }
 
-export const addEntries = (/* state */ ) => {
-
+export const addEntry = (state, entry ) => {
+    //state -> entries -> la nueva entrada debe ser la primera
+    state.entries = [ entry, ...state.entries ]
 }

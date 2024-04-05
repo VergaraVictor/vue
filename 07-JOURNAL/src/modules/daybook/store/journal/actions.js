@@ -40,6 +40,19 @@ export const updateEntry = async ({ commit }, entry) => { // entry debe ser un p
 }
 
 
-export const createEntry = async (/*{ commit }*/) => {
+export const createEntry = async ( {commit}, entry) => {
 
+    // dataToSave
+    const { date, picture, text} = entry
+    const dataToSave = { date, picture, text }
+
+    // const { data } = await journalApi.post( `PATH.json`, dataToSave)
+    const { data } = await journalApi.post( `entries.json`, dataToSave )
+    
+    // data = { "name": "-NugD_JjQgWnCHDk7Ixc" }
+    dataToSave.id = data.name
+    // commit -> addEntry
+    commit('addEntry', dataToSave )
+
+    return data.name
 }
