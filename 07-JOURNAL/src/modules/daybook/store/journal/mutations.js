@@ -1,6 +1,8 @@
 // Mutaciones son sincronas y hacen las moidificacion del state y van afectar todaos los llamados del state
 // export const myMutation = ( state ) => {
 
+import state from "./state"
+
 // }
 
 export const setEntries = ( state, entries ) => {
@@ -24,4 +26,9 @@ export const upateEntries = ( state, entry ) => { // entry actualizada
 export const addEntry = (state, entry ) => {
     //state -> entries -> la nueva entrada debe ser la primera
     state.entries = [ entry, ...state.entries ]
+}
+
+export const deleteEntry = ( state, id ) => {
+    // remover del state.entries borrar la entrada por ese ID
+    state.entries = state.entries.filter( entry => entry.id !== id )
 }
