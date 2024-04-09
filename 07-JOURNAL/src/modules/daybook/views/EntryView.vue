@@ -8,6 +8,11 @@
             </div>
             
             <div>
+
+                <input type="file"
+                        @change="onSelectedImage">
+                        <!-- multiple> Esto en caso de que se quisieran cargar varios archivos al tiempo-->
+
                 <button
                     v-if="entry.id" 
                     class="btn btn-danger mx-2"
@@ -31,9 +36,15 @@
             ></textarea>
         </div>
 
-        <img src="https://i.pinimg.com/236x/52/8f/82/528f82381f6d3524d80581ba2945448f.jpg" 
+        <!-- <img src="https://i.pinimg.com/236x/52/8f/82/528f82381f6d3524d80581ba2945448f.jpg" 
         alt="entry-picture"
-        class="img-thumbnail">
+        class="img-thumbnail"> -->
+
+        <img 
+            v-if="localImage"
+            :src="localImage" 
+            alt="entry-picture"
+            class="img-thumbnail">
     
     </template>
 
@@ -63,7 +74,9 @@ export default {
 
     data() {
         return {
-            entry: null
+            entry: null,
+            localImage: null,
+            file: null
         }
     },
     
@@ -151,10 +164,27 @@ export default {
                 // redireccionar al entry 
 
                 Swal.fire('Eliminado','','success')
+            }    
+        },
+        
+        onSelectedImage( event ) {
+            const file = event.target.files[0]
+            if ( !file ){
+                this.localImage = null
+                this.file = null
+                return
             }
 
-            
-        }   
+            this.file = file
+
+            const fr = new FileReader() //FileReader es de Javascrript
+            fr.onload = () => this.localImage = fr.result
+            fr.readAsDataURL( file )
+
+        },
+        onSelecteImage() {
+
+        }
     },
 
     created() {
