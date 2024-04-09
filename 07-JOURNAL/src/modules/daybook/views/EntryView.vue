@@ -10,9 +10,13 @@
             <div>
 
                 <input type="file"
-                        @change="onSelectedImage">
+                        @change="onSelectedImage"
+                        ref="imageSelector"
+                        v-show="false"
+                        accept="image/png, image/jpg"
+                        >
                         <!-- multiple> Esto en caso de que se quisieran cargar varios archivos al tiempo-->
-
+                        <!-- v-show="false" para ocultar el "seleccionar archivo" -->
                 <button
                     v-if="entry.id" 
                     class="btn btn-danger mx-2"
@@ -21,7 +25,8 @@
                     <i class="fa fa-trash-alt"></i>
                 </button>
 
-                <button class="btn btn-primary">
+                <button class="btn btn-primary"
+                    @click="onSelecteImage">
                     Subir foto
                     <i class="fa fa-upload"></i>
                 </button>
@@ -183,7 +188,8 @@ export default {
 
         },
         onSelecteImage() {
-
+            this.$refs.imageSelector.click() // Esto es propio de Javascript
+            // document.querySelector('input').click() Es como si realizara esto       
         }
     },
 
