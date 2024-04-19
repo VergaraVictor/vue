@@ -40,10 +40,12 @@
                 placeholder="¿Qué sucedio hoy?"
             ></textarea>
         </div>
-
-        <!-- <img src="https://i.pinimg.com/236x/52/8f/82/528f82381f6d3524d80581ba2945448f.jpg" 
-        alt="entry-picture"
-        class="img-thumbnail"> -->
+            
+        <img 
+            v-if="entry.picture && !localImage === null"   
+            :src="entry.picture" 
+            alt="entry-picture"
+            class="img-thumbnail">
 
         <img 
             v-if="localImage"
@@ -61,10 +63,12 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue';
-import { mapGetters, mapActions } from 'vuex';  // se asocian con las propiedades computadas
-import getDayMonthYear from '../helpers/getDayMonthYear'
+import { defineAsyncComponent } from 'vue'
+import { mapGetters, mapActions } from 'vuex'  // se asocian con las propiedades computadas
 import Swal from 'sweetalert2'
+
+import getDayMonthYear from '../helpers/getDayMonthYear'
+import uploadImage from '../helpers/uploadImage'
 
 export default {
     props: {
@@ -129,6 +133,10 @@ export default {
                 allowOutsideClick: false
             })
             Swal.showLoading()
+
+            const picture = await uploadImage( this.file )
+
+            this.entry.picture = picture
             
             if( this.entry.id ){
                 // Actualizar
@@ -141,6 +149,7 @@ export default {
                 // await action
 
                 //recirectTo => entry, param: id
+                this.file = null
                 this.$router.push({ name: 'entry', params: { id } })
             }
 
