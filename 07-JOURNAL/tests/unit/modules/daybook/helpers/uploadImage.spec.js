@@ -1,20 +1,20 @@
 import cloudinary from 'cloudinary'
 import axios from 'axios'
 
-import uploadImage from '@/modules/daybook/helpers/uploadImage'
+import uploadImage from '../helpers/uploadImage'
+
 
 cloudinary.config({
-    cloud_name: 'dx0pryfzn',
-    api_key: '422916932349318',
-    api_secret: 'gM_vs-URpSAyA3xV-PsoTg8xF3M'
+    cloud_name: 'ddqwpq9qq',
+    api_key: '721435814739951',
+    api_secret: 'm8_VBxnZcresh_fhL0mViUUHFxg'
 })
-
 
 describe('Pruebas en el uploadImage ', () => {
     
     test('debe de cargar un archivo y retornar el url', async( done ) => {
         
-        const { data } = await axios.get('https://res.cloudinary.com/dx0pryfzn/image/upload/v1627077252/ip3vwn8sjvnncphqka4y.jpg', {
+        const {data} = await axios.get('https://res.cloudinary.com/ddqwpq9qq/image/upload/v1713325620/zlmszrvyai4uexlr3cur.jpg', {
             responseType: 'arraybuffer'
         })
 
@@ -26,17 +26,18 @@ describe('Pruebas en el uploadImage ', () => {
 
 
         // Tomar el ID
+
         const segments = url.split('/')
-        const imageId = segments[ segments.length - 1 ].replace('.jpg','')
+        const imageId = segments[ segments.length -1 ].replace('.jpg','')
         cloudinary.v2.api.delete_resources( imageId, {}, () => {
             done()
         })
-
         
     })
-    
 
+        
 })
+    
 
 
 
