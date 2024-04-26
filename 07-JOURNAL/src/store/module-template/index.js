@@ -1,11 +1,9 @@
-// Se va importar todo
+
 import state from './state'
 import * as actions from './actions'
 import * as getters from './getters'
 import * as mutations from './mutations'
 
-
-// Se realiza la importación del mismo
 
 const myCustomModule = {
     namespaced: true,
@@ -15,5 +13,5 @@ const myCustomModule = {
     state
 }
 
-export default myCustomModule
 
+export default myCustomModule

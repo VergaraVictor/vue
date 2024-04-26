@@ -2,8 +2,7 @@ const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio', '
 const days   = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']
 
 
-
-const getDAyMonthYear = ( dateString) => {
+const getDayMonthYear = ( dateString ) => {
 
     const date = new Date( dateString )
 
@@ -12,6 +11,8 @@ const getDAyMonthYear = ( dateString) => {
         month: months[ date.getMonth() ],
         yearDay: `${ date.getFullYear() }, ${ days[ date.getDay() ] }`
     }
+
 }
 
-export default getDAyMonthYear
+
+export default getDayMonthYear

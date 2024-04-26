@@ -4,18 +4,18 @@
     </div>
 
     <Fab 
-    @on:click="createNewEntry"
+        @on:click="createNewEntry"
     />
 </template>
 
 
 <script>
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent } from 'vue'
 
 export default {
     name: 'NoEntrySelected',
     components: {
-        Fab : defineAsyncComponent( () => import('../components/Fab.vue') )    
+        Fab: defineAsyncComponent( () => import('../components/Fab.vue') )
     },
     methods: {
         createNewEntry() {

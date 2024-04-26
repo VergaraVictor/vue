@@ -8,4 +8,4 @@ import './styles/styles.scss'
 createApp(App)
     .use( store )
     .use( router )
-    .mount( '#app' )
+    .mount('#app')

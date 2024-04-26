@@ -1,11 +1,9 @@
-// Se va importar todo
+
 import state from './state'
 import * as actions from './actions'
 import * as getters from './getters'
 import * as mutations from './mutations'
 
-
-// Se realiza la importación del mismo
 
 const journalModule = {
     namespaced: true,
@@ -15,5 +13,5 @@ const journalModule = {
     state
 }
 
-export default journalModule
 
+export default journalModule
