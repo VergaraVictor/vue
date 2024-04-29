@@ -44,4 +44,28 @@ describe('Vuex - Pruebas en el Journal module', () => {
 
     })
 
+    test('mutation: updateEntry', () => {
+        // ceate store con entries
+        const store = createVuexStore( journalState ) 
+
+        //updatedEntry
+        const updatedEntry = {
+            id: '-Nve7NS13QoHd-mkDF-J',
+            date : 1713325047656,
+            text : 'Hola mundo desde pruebas'
+        }
+        // commit de la mutacion
+        store.commit('journal/updateEntry', updatedEntry )
+
+        const storeEntries = store.state.journal.entries
+        //expects
+        // Entries.lenght = 2
+        expect( storeEntries.length ).toBe(2)
+        // entries tiene que existir updateEntry toEqual
+        expect(
+            storeEntries.find( e => e.id === updatedEntry.id )
+        ).toEqual( updatedEntry )
+
+    })
+
 })
