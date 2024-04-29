@@ -19,7 +19,7 @@ const createVuexStore = ( initialState ) =>
 
 describe('Vuex - Pruebas en el Journal module', () => {
 
-    // Basicas
+    // Basicas==========================================================
     test('este es el estado inicial, debe de tener este state', () => {
 
         const store = createVuexStore( journalState )
@@ -29,7 +29,7 @@ describe('Vuex - Pruebas en el Journal module', () => {
         expect( entries ).toEqual( journalState.entries )
     })
 
-    // Mutations
+    // Mutations========================================================
     test('mutation: setEntries', () => {
 
         const store = createVuexStore({ isLoading: true, entries: [] })
@@ -88,6 +88,21 @@ describe('Vuex - Pruebas en el Journal module', () => {
         expect( store.state.journal.entries.length ).toBe(2)
         // entradas con el id ABC-123 no debe de existir
         expect( store.state.journal.entries.find( e => e.id === 'ABC-123' ) ).toBeFalsy()
+    })
+
+    // Getters============================================================================
+    test('getters: getEntriesByTerm getEntryById', () => {
+
+        const store = createVuexStore( journalState )
+
+        const [ entry1, entry2 ] = journalState.entries
+
+        expect( store.getters['journal/getEntriesByTerm']('').length ).toBe(2)
+        expect( store.getters['journal/getEntriesByTerm']('segunda').length ).toBe(1)
+
+        expect( store.getters['journal/getEntriesByTerm']('segunda') ).toEqual([ entry2 ])
+        //-Nve7NS13QoHd-mkDF-J
+        expect( store.getters['journal/getEntryById']('-Nve7NS13QoHd-mkDF-J') ).toEqual( entry1 )
     })
 
 })
