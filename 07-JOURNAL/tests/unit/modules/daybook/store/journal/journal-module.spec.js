@@ -105,4 +105,13 @@ describe('Vuex - Pruebas en el Journal module', () => {
         expect( store.getters['journal/getEntryById']('-Nve7NS13QoHd-mkDF-J') ).toEqual( entry1 )
     })
 
+    // Actions=====================================================================================
+    test('actions: loadEntries', async() => {
+
+        const store = createVuexStore({ isLoading: true, entries: [] })
+
+        await store.dispatch('journal/loadEntries')
+
+        expect( store.state.journal.entries.length ).toBe(1)
+    })
 })
