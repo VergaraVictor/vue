@@ -1,45 +1,66 @@
 import {shallowMount} from '@vue/test-utils'
 import { createStore } from 'vuex'
 
-import { getEntriesByTerm } from '../../../../../src/modules/daybook/store/journal/getters'
-import { journalState } from '../../../mock-data/test-journal-state'
+import journal from '@/modules/daybook/store/journal'
 import EntryList from '../../../../../src/modules/daybook/components/EntryList.vue'
+import { journalState } from '../../../mock-data/test-journal-state'
+
+
+const createVuexStore = ( initialState ) =>
+    createStore({
+        modules: {
+            journal: {
+                ...journal,
+                state: { ...initialState }
+            }
+        }
+    }) 
 
 describe('Pruebas en el EntryList', () => {
-
-    const journalMockModule = {
-        namespaced: true,
-        getters: {
-            // getEntriesByTerm: jest.fn()
-            getEntriesByTerm
-        },
-        state: () => ({
-            isLoading: false,
-            entries: journalState.entries
-        })
+   
+    const store = createVuexStore( journalState )
+    const mockRouter = {
+        push: jest.fn()
     }
 
-   
-   
-    const store = createStore({
-        modules:{
-            journal: { ...journalMockModule }
-        }
-    })
+    let wrapper
 
-    const wrapper = shallowMount( EntryList, {
-        global: {
-            mocks: {
-                // TODO: $router:
-            },
-            plugins: [ store ]
-        }
+    beforeEach(() => {
+        jest.clearAllMocks()
+        wrapper = shallowMount( EntryList, {
+            global: {
+                mocks: {
+                    $router: mockRouter
+                },
+                plugins: [ store ]
+            }
+        }) 
     })
 
 
     test('debe de llamar el getEntriesByTerm sin termino y mostrar 2 entradas', () => {
 
-        console.log( wrapper.html() )
+        expect( wrapper.findAll('entry-stub').length ).toBe(2)
+        expect( wrapper.html() ).toMatchSnapshot()
+
+    })
+
+    test('debe llamar el getEntriesByTerm y filtrar las entradas', async() => {
+
+        const input = wrapper.find('input')
+        await input.setValue('segunda')
+
+        expect( wrapper.findAll('entry-stub').length ).toBe(1)
+
+    })
+
+    test('el boton de nuevo debe redireccionar a /new', () => {
+
+        wrapper.find('button').trigger('click')
+
+        expect( mockRouter.push )
+            .toHaveBeenCalledWith({ name: 'entry', params: { id: 'new' } })
+ 
     })
 
 
