@@ -163,7 +163,6 @@ export default {
                 confirmButtonText: 'Si, estoy seguro'
             })
 
-
             if ( isConfirmed ) {
                 Swal.fire({
                     title: 'Espere por favor',
@@ -171,7 +170,7 @@ export default {
                 })
                 Swal.showLoading()
                 
-                await this.deleteEntry( this.entry.id )
+                // await this.deleteEntry( this.entry.id )
                 this.$router.push({ name: 'no-entry' })
 
                 Swal.fire('Eliminado','','success')
