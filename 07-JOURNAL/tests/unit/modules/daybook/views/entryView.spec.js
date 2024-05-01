@@ -18,15 +18,19 @@ const createVuexStore = ( initialState ) =>
         }
     })
 
+
 jest.mock('sweetalert2', () => ({
     fire: jest.fn(),
     showLoading: jest.fn(),
     close: jest.fn()
 }))
 
+
 describe('Pruebas en el EntryView', () => {
 
     const store = createVuexStore( journalState )
+    store.dispatch = jest.fn()
+
     const mockRouter = {
         push: jest.fn()
     }
@@ -93,6 +97,7 @@ describe('Pruebas en el EntryView', () => {
 
         setTimeout( () => {
 
+            expect( store.dispatch ).toHaveBeenCalledWith('journal/deleteEntry', '-MfKM6PrX3s9QqURdLx5')
             expect( mockRouter.push ).toHaveBeenCalled()
             done()
         }, 1 )
