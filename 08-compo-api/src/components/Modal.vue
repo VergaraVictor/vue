@@ -3,8 +3,16 @@
         
         <div class="modal-container">
 
-            <h1>Hola mundo</h1>
-
+            <slot name="header" />
+            <slot name="body" />
+            <slot name="footer" />
+            
+            <!-- <slot /> -->
+            <!-- <slot>
+                <div class="center">
+                    Esto aparecera si no tenemos contenido
+                </div>
+            </slot> -->
         </div>
 
     </div>
@@ -12,7 +20,9 @@
 
 <script>
 export default {
+    setup( props, context ){
 
+    }
 } 
 </script>
 
