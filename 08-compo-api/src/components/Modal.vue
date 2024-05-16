@@ -1,5 +1,6 @@
 <template>
-    <div class="modal-background fade-in">
+    <div class="modal-background fade-in"
+        @click.self="$emit('on:close')">
         
         <div class="modal-container">
 
@@ -20,7 +21,16 @@
 
 <script>
 export default {
+    props: {
+        title:{
+            type: String,
+            required: true
+        }
+    },
+    emits: ['on:close'],
     setup( props, context ){
+
+        console.log({props, context})
 
     }
 } 
