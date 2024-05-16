@@ -29,7 +29,8 @@
         <div>
           <ul>
             <li v-for="todo in getTodosByTab" :key="todo.id"
-              :class="{ 'completed': todo.completed }">
+              :class="{ 'completed': todo.completed }"
+              @dblclick="toggleTodo( todo.id )">
               {{ todo.text }}
             </li>
           </ul>
@@ -47,17 +48,24 @@ export default {
                 
     const store = useStore()
 
-    const currentTab = ref('all')    
+    const currentTab = ref('all')
+    
+    // const toggleTodo = ( id ) => {(
+    //   store.commit('toggleTodo', id )
+    // )} Esto no se necesita en el setup se puede llevar directamente al return
     
 
     return {
       currentTab,
 
-      pending: computed(() => store.getters['pendingTodos'] ),
       all: computed(() => store.getters['allTodos'] ),
       completed: computed(() => store.getters['completedTodos'] ),
+      pending: computed(() => store.getters['pendingTodos'] ),
 
-      getTodosByTab: computed( () => store.getters['getTodosByTab'](currentTab.value) )
+      getTodosByTab: computed( () => store.getters['getTodosByTab'](currentTab.value) ),
+
+      // Methods
+      toggleTodo: ( id ) => store.commit('toggleTodo', id )
     }
 
 
