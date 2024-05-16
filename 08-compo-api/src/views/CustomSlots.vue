@@ -5,7 +5,6 @@
 
     <Modal v-if="isOpen"
             title="Hola mundo"
-            otherTitle="Otro titulo"
             @on:close="closeModal">
         <!-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit!</p>
         <button>Salir</button>
@@ -21,6 +20,11 @@
         <template v-slot:header>
             <h2>Titulo del modal</h2>   
         </template>
+
+        <template v-slot:exposed="{ newTitle }">
+            <h2>{{ newTitle }}</h2>
+        </template>
+
     </Modal>
 </template>
 
