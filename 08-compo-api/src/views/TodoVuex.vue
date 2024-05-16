@@ -2,6 +2,10 @@
         <h1>Lista de tareas de Thanos</h1>
         <!-- <h4>Pendientes: {{ $store.state.todos.filter( t => !t.completed ).length }}</h4> -->
         <h4>Pendientes: {{ pending.length }}</h4>
+        
+        <hr>
+        <h4>Todos: {{ all.length }}</h4>
+        <h4>Completados: {{ completed.length }}</h4>
 
 </template>
 
@@ -17,7 +21,9 @@ export default {
 
 
     return {
-        pending: computed(() => store.getters['pendingTodos'])
+        pending: computed(() => store.getters['pendingTodos']),
+        all: computed(() => store.getters['allTodos']),
+        completed: computed(() => store.getters['completedTodos']),
     }
 
 
