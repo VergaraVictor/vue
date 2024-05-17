@@ -39,9 +39,9 @@ describe("Pruebas en Entry Component", () => {
 
     test("pruebas en las propiedades computadas", () => {
 
-        expect( wrapper.vm.day ).toBe(16)
-        expect( wrapper.vm.month ).toBe('Abril')
-        expect( wrapper.vm.yearDay ).toBe('2024, Martes')
+        expect( wrapper.vm.day ).toBe(23)
+        expect( wrapper.vm.month ).toBe('Julio')
+        expect( wrapper.vm.yearDay ).toBe('2021, Viernes')
 
     });
 });

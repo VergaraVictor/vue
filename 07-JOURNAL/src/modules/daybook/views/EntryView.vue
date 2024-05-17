@@ -163,6 +163,7 @@ export default {
                 confirmButtonText: 'Si, estoy seguro'
             })
 
+
             if ( isConfirmed ) {
                 Swal.fire({
                     title: 'Espere por favor',

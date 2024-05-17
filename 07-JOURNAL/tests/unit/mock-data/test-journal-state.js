@@ -3,8 +3,8 @@ export const journalState = {
     isLoading: false,
     entries: [
         {
-            id: '-Nve7NS13QoHd-mkDF-J',
-            date : 1713325047656,
+            id: '-MfKM3yA5ij3hnmLFfqv',
+            date : 1627077227978,
             text : "Hola mundo desde mock data"
         },
         {
