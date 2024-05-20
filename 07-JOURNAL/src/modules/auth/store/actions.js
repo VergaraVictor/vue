@@ -17,7 +17,7 @@ export const createUser = async ({ commit }, user) => {
         // console.log(data) 
         const { idToken, refreshToken } = data
         
-        await authApi.post(':update', { displayName: name, idToken })
+        await authApi.post(':update', { displayName: name, idToken, refreshToken })
         
         // TODO: Mutation: loginUser
         delete user.password // este se elimina por que la contraseña para no almacenarla en el storage
