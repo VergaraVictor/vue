@@ -40,7 +40,7 @@ export const signInUser = async ({ commit }, user) => {
 
         const { data } = await authApi.post(':signInWithPassword', { email, password, returnSecureToken: true })
         const { displayName, idToken, refreshToken } = data
-        console.log(data)
+        // console.log(data)
         user.name = displayName
 
         commit('loginUser', { user, idToken, refreshToken })
@@ -65,7 +65,7 @@ export const checkAuthentication = async ({ commit }) => {
 
     try {
         const { data } = await authApi.post(':lookup', { idToken })
-        console.log(data)
+        // console.log(data)
         const { displayName, email } = data.users[0]
         
         const user = {
