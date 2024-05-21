@@ -15,9 +15,36 @@ describe('Vuex: Pruebas en el auth-module', () => {
         const { status, user, idToken, refreshToken } = store.state.auth
 
         expect( status ).toBe( 'authenticating' )
-        expect( idToken ).toBe( null )
         expect( user ).toBe( null )
+        expect( idToken ).toBe( null )
         expect( refreshToken ).toBe( null )
+    })
+
+    // Mutations
+    test('Mutation: loginUser', () => {
+
+        const store = createVuexStore({
+            status: 'authenticating', // 'authenticated', 'not-authenticated', 'authenticating'
+            user: null,
+            idToken: null,
+            refreshToken: null
+        })
+
+        const payload = {
+            user: { name: 'victor', email: 'victor@gmail.com' },
+            idToken: 'ABC-123',
+            refreshToken: 'XYZ-123'
+        }
+
+        store.commit('auth/loginUser', payload )
+
+        const { status, user, idToken, refreshToken } = store.state.auth
+
+        expect( status ).toBe( 'authenticated' )
+        expect( user ).toEqual( { name: 'victor', email: 'victor@gmail.com' } )
+        expect( idToken ).toBe( 'ABC-123' )
+        expect( refreshToken ).toBe( 'XYZ-123' )
+
     })
 
 
