@@ -22,6 +22,7 @@ export const loginUser = ( state, { user, idToken, refreshToken } ) => {
 }
 
 export const logout = (state) => {
+    
     state.user = null
     state.idToken = null
     state.refreshToken = null
