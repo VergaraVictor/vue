@@ -30,9 +30,10 @@ export default {
     },
     computed: {
         shortText() {
-            return ( this.entry.text.length > 130 )
-                ? this.entry.text.substring(0,130) + '...'
-                : this.entry.text
+            const text = this.entry?.text || ''; // Usamos el operador de encadenamiento opcional y un valor por defecto
+            return text.length > 130
+                ? text.substring(0, 130) + '...'
+                : text;
         },
         day() {
             const date = new Date( this.entry.date )
