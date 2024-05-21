@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import journal from '@/modules/daybook/store/journal'
 import { journalState } from '../../../../mock-data/test-journal-state'
 
+import authApi from '@/src/api/authApi'
 
 const createVuexStore = ( initialState ) => 
     createStore({
@@ -16,6 +17,18 @@ const createVuexStore = ( initialState ) =>
 
 
 describe('Vuex - Pruebas en el Journal Module', () => {
+
+    beforeAll( async() => {
+
+        const { data } = await authApi.post(':signInWithPassword', {
+            email: 'test@test.com',
+            password: '123456',
+            returnSecureToken: true
+        })
+
+        localStorage.setItem('idToken', data.idToken )
+
+    })
     
     // Basicas ==================
     test('este es el estado inicial, debe de tener este state', () => {
@@ -46,9 +59,9 @@ describe('Vuex - Pruebas en el Journal Module', () => {
         
         const store = createVuexStore( journalState )
         const updatedEntry = {
-            id: '-MfKM3yA5ij3hnmLFfqv',
-            date : 1627077227978,
-            text : 'Hola mundo desde pruebas'
+            id: '-Nwjf61eZrETCpAR4Xut',
+            date : 1713325047657,
+            text : ''
         }
 
         store.commit('journal/updateEntry', updatedEntry )
@@ -93,7 +106,7 @@ describe('Vuex - Pruebas en el Journal Module', () => {
 
         expect( store.getters['journal/getEntriesByTerm']('segunda') ).toEqual([ entry2 ])
         
-        expect( store.getters['journal/getEntryById']('-MfKM3yA5ij3hnmLFfqv') ).toEqual( entry1 )
+        expect( store.getters['journal/getEntryById']('-Nwjf61eZrETCpAR4Xut') ).toEqual( entry1 )
 
     })
 
@@ -114,9 +127,9 @@ describe('Vuex - Pruebas en el Journal Module', () => {
         const store = createVuexStore( journalState )
 
         const updatedEntry = {
-            id: '-MfKM3yA5ij3hnmLFfqv',
-            date : 1627077227978,
-            text : 'Hola mundo desde mock data',
+            id: '-Nwjf61eZrETCpAR4Xut',
+            date : 1713325047657,
+            text : '',
             otroCampo: true,
             otroMas: { a: 1}
         }
@@ -127,9 +140,9 @@ describe('Vuex - Pruebas en el Journal Module', () => {
         expect( 
             store.state.journal.entries.find( e => e.id === updatedEntry.id )
         ).toEqual({
-            id: '-MfKM3yA5ij3hnmLFfqv',
-            date : 1627077227978,
-            text : 'Hola mundo desde mock data',
+            id: '-Nwjf61eZrETCpAR4Xut',
+            date : 1713325047657,
+            text : '',
         })
     })
 

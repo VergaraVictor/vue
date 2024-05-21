@@ -41,7 +41,7 @@ describe('Pruebas en el EntryView', () => {
         jest.clearAllMocks()
         wrapper = shallowMount( EntryView, {
             props: {
-                id: '-MfKM6PrX3s9QqURdLx5'
+                id: '-Nve7NS13QoHd-mkDF-J'
             },
             global: {
                 mocks: {
@@ -98,7 +98,7 @@ describe('Pruebas en el EntryView', () => {
 
         setTimeout( () => {
             
-            expect( store.dispatch ).toHaveBeenCalledWith('journal/deleteEntry', '-MfKM6PrX3s9QqURdLx5')
+            expect( store.dispatch ).toHaveBeenCalledWith('journal/deleteEntry', '-Nve7NS13QoHd-mkDF-J')
             expect( mockRouter.push ).toHaveBeenCalled()
             done()
 
