@@ -74,6 +74,22 @@ describe('Vuex: Pruebas en el auth-module', () => {
     })
 
     // Getters
+    test('Getter: username currentState', () => {
+        
+        const store = createVuexStore({
+            status: 'authenticated', // 'authenticated', 'not-authenticated', 'authenticating'
+            user: { name: 'victor', email: 'victor@gmail.com' },
+            idToken: 'ABC-123',
+            refreshToken: 'ABC-123'
+        })
+
+        expect( store.getters['auth/currentState'] ).toBe('authenticated')
+        expect( store.getters['auth/username'] ).toBe('victor')
+
+    })
+
+    // Actions
+    
 
 
 
