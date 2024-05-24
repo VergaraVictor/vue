@@ -15,7 +15,7 @@
           Quasar App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <!-- TODO: <div>Quasar v{{ $q.version }}</div> -->
       </q-toolbar>
     </q-header>
 
@@ -45,74 +45,30 @@
   </q-layout>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script>
 import EssentialLink from 'components/EssentialLink.vue'
+import { linksList } from '../router/link-list'
+import { defineComponent, ref } from 'vue'
 
-defineOptions({
-  name: 'MainLayout'
+export default defineComponent({
+  name: 'MainLayout',
+
+  components: {
+    EssentialLink
+  },
+
+  setup() {
+  
+    const leftDrawerOpen = ref(false)
+
+    return {
+
+      linksList,
+      leftDrawerOpen,
+      toggleLeftDrawer () {
+        leftDrawerOpen.value = !leftDrawerOpen.value
+      }
+    }
+  }
 })
-
-const linksList = [
-  {
-    title: 'Typography',
-    caption: 'Tipos de letras de Quasar',
-    icon: 'las la-align-left',
-    link: 'typography'
-  },
-  {
-    title: 'Flex Layout',
-    caption: 'Estilos con Flex',
-    icon: 'las la-layer-group',
-    link: 'flex'
-  },
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'las la-graduation-cap',
-    link: 'https://quasar.dev'
-  },
-  // {
-  //   title: 'Github',
-  //   caption: 'github.com/quasarframework',
-  //   icon: 'lab la-github',
-  //   link: 'https://github.com/quasarframework'
-  // },
-  // {
-  //   title: 'Discord Chat Channel',
-  //   caption: 'chat.quasar.dev',
-  //   icon: 'lab la-discord',
-  //   link: 'https://chat.quasar.dev'
-  // },
-  // {
-  //   title: 'Forum',
-  //   caption: 'forum.quasar.dev',
-  //   icon: 'lab la-forumbee',
-  //   link: 'https://forum.quasar.dev'
-  // },
-  // {
-  //   title: 'Twitter',
-  //   caption: '@quasarframework',
-  //   icon: 'lab la-twitter',
-  //   link: 'https://twitter.quasar.dev'
-  // },
-  // {
-  //   title: 'Facebook',
-  //   caption: '@QuasarFramework',
-  //   icon: 'lab la-facebook',
-  //   link: 'https://facebook.quasar.dev'
-  // },
-  // {
-  //   title: 'Quasar Awesome',
-  //   caption: 'Community Quasar projects',
-  //   icon: 'las la-sign-out-alt',
-  //   link: 'https://awesome.quasar.dev'
-  // }
-]
-
-const leftDrawerOpen = ref(false)
-
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
 </script>
