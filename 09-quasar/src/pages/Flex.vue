@@ -27,6 +27,14 @@
       <div class="col col-4 bg-primary"></div>
       <div class="col col-4 bg-secondary"></div>
     </div>
+
+    <q-separator spaced />
+
+    <div class="row q-mb-md justify-between"> 
+      <div class="col-12 col-sm-5 col-md-4 bg-primary"></div>
+      <div class="col-12 col-sm-5 col-md-4 bg-secondary"></div>
+    </div>
+
   </q-page>
 </template>
 
