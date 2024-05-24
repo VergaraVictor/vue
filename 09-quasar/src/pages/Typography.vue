@@ -6,15 +6,15 @@
   </q-page>
 </template>
 
-<script setup>
+<!-- <script setup>
 defineOptions({
   name: 'Typography'
 });
-</script>
-<!-- <script>
+</script> -->
+<script>
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Typography'
 })
-</script> -->
+</script>
