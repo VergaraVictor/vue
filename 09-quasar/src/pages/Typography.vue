@@ -26,6 +26,11 @@
     <span class="text-weight-bold">Ex veniam elit laborum deserunt laboris laboris ipsum commodo nostrud.</span>
     <span class="text-weight-bolder">Occaecat magna nulla mollit sint sit labore aute officia tempor velit sit amet.</span>
 
+    <q-btn 
+      color="primary"
+      label="Abrir menú lateral"
+      class="q-mt-md"
+    />
 
   </q-page>
 </template>
