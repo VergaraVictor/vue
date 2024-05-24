@@ -12,6 +12,12 @@ export const linksList = [
       link: 'flex'
     },
     {
+      title: 'Dialogs',
+      caption: 'Alerta,  diálogos y confirmaciones',
+      icon: 'lar la-window-minimize',
+      link: 'dialogs'
+    },
+    {
       title: 'Docs',
       caption: 'quasar.dev',
       icon: 'las la-graduation-cap',

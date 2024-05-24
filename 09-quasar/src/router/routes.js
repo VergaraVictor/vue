@@ -6,6 +6,7 @@ const routes = [
       { path: '', component: () => import('src/pages/indexPage.vue') },
       { path: 'Typography', name: 'typography', component: () => import('src/pages/Typography.vue') },
       { path: 'flex', name: 'flex', component: () => import('src/pages/Flex.vue') },
+      { path: 'dialogs', name: 'dialogs', component: () => import('src/pages/Dialogs.vue') },
     ]
   },
 

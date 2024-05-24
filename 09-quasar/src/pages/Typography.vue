@@ -42,10 +42,11 @@ defineOptions({
 });
 </script> -->
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 import useUI from '../composables/useUI'
 
 export default defineComponent({
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Typography',
 
   setup () {
