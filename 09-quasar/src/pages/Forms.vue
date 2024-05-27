@@ -69,12 +69,15 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
+import { useQuasar } from 'quasar'
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Forms',
   
   setup() {
+
+    const $q = useQuasar()
         
     const userForm = ref({
       email: '',
@@ -92,7 +95,10 @@ export default defineComponent({
         userForm.value.errorInConditions = false
 
         if ( !userForm.value.conditions ) {
-          console.log('Debe aceptar la condiciones')
+          $q.notify({
+            message: 'Debe aceptar la condiciones',
+            icon: 'las la-exclamation-circle'
+          })
           userForm.value.errorInConditions = true
           return
         }
