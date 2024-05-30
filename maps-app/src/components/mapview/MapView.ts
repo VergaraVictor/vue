@@ -17,10 +17,22 @@ export default defineComponent({
 
             const map = new Mapboxgl.Map({
                 container: mapElement.value, // container ID
-                style: 'mapbox://styles/mapbox/streets-v12', // style URL
+                style: 'mapbox://styles/mapbox/light-v10', // style URL
                 center: userLocation.value, // starting position [lng, lat]
                 zoom: 15, // starting zoom
-            });   
+            });
+            
+            const myLocationPopup = new Mapboxgl.Popup(/*{ offset: [0,-25]} Para mover el popup*/)
+                .setLngLat( userLocation.value )
+                .setHTML(`
+                    <h4>Aquí estoy</h4>
+                    <p>Actualmente en Bogotá</p>
+                `)
+
+            const myLocationMarker  = new Mapboxgl.Marker()
+                .setLngLat( userLocation.value )
+                .setPopup ( myLocationPopup )
+                .addTo( map );
         
         }
 
