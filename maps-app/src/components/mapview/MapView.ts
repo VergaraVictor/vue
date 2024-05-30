@@ -33,7 +33,8 @@ export default defineComponent({
                 .setLngLat( userLocation.value )
                 .setPopup ( myLocationPopup )
                 .addTo( map );
-        
+                
+            // todo establecer el mapa en vuex 
         }
 
         onMounted(() => {
