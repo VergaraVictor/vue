@@ -6,7 +6,16 @@
             <h5>Nombre del lugar</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam laboriosam dolorem ducimus </p>
             <div aling="right">
-                <button class="btn btn-outline-primary">
+                <button class="btn btn-outline-primary btn-sm">
+                    Direcciones
+                </button>   
+            </div>
+        </li>
+        <li class="list-group-item list-group-item-action ">
+            <h5>Nombre del lugar</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam laboriosam dolorem ducimus </p>
+            <div aling="right">
+                <button class="btn btn-outline-primary btn-sm">
                     Direcciones
                 </button>   
             </div>
@@ -15,16 +24,7 @@
             <h5>Nombre del lugar</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam laboriosam dolorem ducimus </p>
             <div aling="right">
-                <button class="btn btn-outline-primary">
-                    Direcciones
-                </button>   
-            </div>
-        </li>
-        <li class="list-group-item list-group-item-action">
-            <h5>Nombre del lugar</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam laboriosam dolorem ducimus </p>
-            <div aling="right">
-                <button class="btn btn-outline-primary">
+                <button class="btn btn-outline-primary btn-sm">
                     Direcciones
                 </button>   
             </div>
@@ -35,5 +35,13 @@
 <style scoped>
 li {
     cursor: pointer;
+}
+
+h5 {
+    font-size: 20px !important;
+}
+
+p {
+    font-size: 10px;
 }
 </style>
