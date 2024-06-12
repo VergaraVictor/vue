@@ -5,6 +5,9 @@ export interface PlacesResponse {
 }
 
 export interface Feature {
+    text: any;
+    place_name: any;
+    center: [any, any];
     type:       string;
     id:         string;
     geometry:   Geometry;

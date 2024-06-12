@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import { useMapStore, usePlacesStore } from '@/composables';
 import { Feature } from '@/interfaces/places';
 
@@ -7,9 +7,14 @@ name: 'SearchResults',
 setup() {
 
         const { isLoadingPlaces, places } = usePlacesStore();
-        const { map } = useMapStore();
+        const { map, setPlaceMakers } = useMapStore();
+
         const activePlace = ref('');
 
+        watch( places, (newPlaces) => {
+            activePlace.value = '';
+          setPlaceMakers(newPlaces);            
+        });
 
         return {
             isLoadingPlaces,
