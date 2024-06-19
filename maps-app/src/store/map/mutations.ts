@@ -1,35 +1,48 @@
 import { MutationTree } from 'vuex';
 import { MapState } from './state';
-import mapboxgl, { Marker } from 'mapbox-gl';
+import Mapboxgl from 'mapbox-gl';
+
 import { Feature } from '@/interfaces/places';
 
 
 const mutation: MutationTree<MapState> = {
-    setMap( state, map: mapboxgl.Map ) {
+    setMap( state, map: Mapboxgl.Map ) {
         state.map = map;
+    },
+
+    setDistanceDuration( state, { distance, duration }: { distance: number, duration: number } ){
+
+        let kms = distance / 1000;
+            kms = Math.round( kms * 100 );
+            kms /= 100;
+
+        state.distance = distance;
+        state.duration = Math.floor( duration / 60 );
+
     },
 
     setPlaceMakers( state, places: Feature[] ) {
 
-        if ( !state.map ) return;
-
+        
         // Borrar marcadores
         state.markers.forEach( marker => marker.remove() );
         state.markers = [];
+
+        if ( !state.map ) return;
 
         // Crear los nuevos marcadores
         for (const place of places ) {
 
             const [ lng, lat ] = place.center;
 
-            const popup = new mapboxgl.Popup()
+            const popup = new Mapboxgl.Popup()
                 .setLngLat([ lng, lat ])
                 .setHTML(`
                     <h4>${ place.text }</h4>
                     <p>${ place.place_name }</p>
                 `);
 
-            const marker  = new mapboxgl.Marker()
+            const marker  = new Mapboxgl.Marker()
                 .setLngLat([ lng, lat ])
                 .setPopup ( popup )
                 .addTo( state.map! );
@@ -54,7 +67,7 @@ const mutation: MutationTree<MapState> = {
         const end   = coords[ coords.length -1 ];
 
         // Definir los bounds
-        const bounds = new mapboxgl.LngLatBounds(
+        const bounds = new Mapboxgl.LngLatBounds(
             [start[0], start[1]],
             [start[0], start[1]],
         );
@@ -70,7 +83,7 @@ const mutation: MutationTree<MapState> = {
         });
 
         // Polyline
-        const sourceData: mapboxgl.AnySourceData = {
+        const sourceData: Mapboxgl.AnySourceData = {
             type: 'geojson',
             data:{
                 type:'FeatureCollection',
