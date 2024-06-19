@@ -22,7 +22,7 @@ export const useMapStore = () => {
 
         // Mutation
         setMap: ( map: Mapboxgl.Map ) => store.commit('map/setMap', map),
-        setPlaceMakers: ( places: Feature[] ) => store.commit('map/setPlaceMarkers', places ),
+        setPlaceMakers: ( places: Feature[] ) => store.commit('map/setPlaceMakers', places ),
         
         // Actions
         getRouteBetweenPoints: ( start: LngLat, end: LngLat ) => store.dispatch('map/getRouteBetweenPoints', {start, end} )

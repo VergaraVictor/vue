@@ -5,7 +5,7 @@ import { useMapStore, usePlacesStore } from "@/composables";
 
 
 export default defineComponent({
-    name: 'MApView',
+    name: 'MapView',
     setup() {
         
         const mapElement = ref<HTMLDivElement>();
@@ -52,7 +52,8 @@ export default defineComponent({
 
         return {
             isUserlocationReady,
-            mapElement
+            mapElement,
+        
         }
     }
 })
